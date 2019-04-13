@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <filter>
+        <filter-name>Filter</filter-name>
+        <filter-class>Filter.LiginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Filter</filter-name>
+        <url-pattern>/systemServlet</url-pattern>
+        <url-pattern>/addBlog.jsp</url-pattern>
+        <url-pattern>/addSuccess.jsp</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>servlet</servlet-name>
+        <servlet-class>controller.FindAllWithPage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>servlet</servlet-name>
+        <url-pattern>/FindAllWithPage</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>systemServlet</servlet-name>
+        <servlet-class>controller.systemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>systemServlet</servlet-name>
+        <url-pattern>/systemServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>
