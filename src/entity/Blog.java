@@ -1,14 +1,14 @@
 package entity;
 
 /**
- * Created by mafx on 2018/6/5.
+ * Created by mafx on 2019/4/20.
  */
 public class Blog {
     private int id;
-    private  String title;
+    private String title;
     private String date;
     private String article;
-    private  String issure;
+    private String issure;
     private String articleClass;
     private String blogClass;
     private String blogAbstract;
