@@ -6,17 +6,19 @@ import entity.User;
 import entity.comment;
 import service.findAllWithPageService;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 /**
- * Created by mafx on 2018/6/6.
+ * Created by mafx on 2018/4/25.
  */
-public class systemServlet extends HttpServlet {
+public class SystemServlet extends HttpServlet {
 
     private findAllWithPageService daws=new findAllWithPageService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,15 +27,37 @@ public class systemServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         String flag=request.getParameter("flag");
          switch (flag){
-             case "login":login(request,response);break;
-             case "loginout":{request.getSession().invalidate();request.getRequestDispatcher("/index.jsp").forward(request,response);break;}
-             case "addBlog":addBlog(request,response);break;
-             case "checkDetail":getBlogDetail(request,response);break;
-             case "manger":mangerBlog(request,response);break;
-             case "update":getUpdateBlog(request,response);break;
-             case "updateBlog":updateBlog(request,response);break;
-             case "delete":deleteBlog(request,response);break;
-             case "addComment":addComment(request,response);break;
+             case "login":
+login(request,response);
+break;
+             case "loginout":
+{request.getSession().invalidate();request.getRequestDispatcher("/index.jsp").forward(request,response);
+break;}
+             case "addBlog":
+addBlog(request,response);
+break;
+             case "checkDetail":
+getBlogDetail(request,response);
+break;
+             case "manger":
+mangerBlog(request,response);
+break;
+             case "update":
+getUpdateBlog(request,response);
+break;
+             case "updateBlog":
+updateBlog(request,response);
+break;
+             case "delete":
+deleteBlog(request,response);
+break;
+             case "addComment":
+addComment(request,response);
+break;
+default:
+login(request,response);
+break;
+
          }
     }
 
@@ -49,9 +73,9 @@ public class systemServlet extends HttpServlet {
         try {
             if(user!=null) {
                 request.getSession().setAttribute("user",user);
-                response.getWriter().print("<script language='javascript'>alert('ç™»å½•æˆåŠŸï¼ï¼ï¼');window.location.href='/index.jsp';</script>");
+                response.getWriter().print("<script language='javascript'>alert('µÇÂ¼³É¹¦£¡£¡£¡');window.location.href='/index.jsp';</script>");
             }else{
-                response.getWriter().print("<script language='javascript'>alert('ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯è¯·é‡æ–°ç™»å½•');history.back(-1);</script>");
+                response.getWriter().print("<script language='javascript'>alert('ÓÃ»§Ãû»òÃÜÂë´íÎóÇëÖØĞÂµÇÂ¼');history.back(-1);</script>");
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -109,7 +133,7 @@ public class systemServlet extends HttpServlet {
         int pageNum=Integer.parseInt(request.getParameter("pageNum"));
         int pageSize=11;
         findAllWithPageService ns=new findAllWithPageService();
-        int blogLevel=Integer.parseInt(request.getParameter("blogLevel"));/*0:æ‰€æœ‰åšå®¢ 1ï¼šç²¾å“åšå®¢ 2ï¼šçƒ­é—¨åšå®¢*/
+        int blogLevel=Integer.parseInt(request.getParameter("blogLevel"));/*0:ËùÓĞ²©¿Í 1£º¾«Æ·²©¿Í 2£ºÈÈÃÅ²©¿Í*/
         String operClass=request.getParameter("operClass");
         if(!operClass.equals("getAllBlog")){
             User user=(User)(request.getSession().getAttribute("user"));
@@ -192,7 +216,7 @@ public class systemServlet extends HttpServlet {
         findAllWithPageService fs=new findAllWithPageService();
         fs.addCommentService(comm);
         try {
-            response.getWriter().print("<script language='javascript'>alert('è¯„è®ºæäº¤æˆåŠŸï¼ï¼ï¼');window.location.href='/FindAllWithPage?flag=checkDetail&id=" + id + "';</script>");
+            response.getWriter().print("<script language='javascript'>alert('ÆÀÂÛÌá½»³É¹¦£¡£¡£¡');window.location.href='/FindAllWithPage?flag=checkDetail&id=" + id + "';</script>");
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -203,9 +227,10 @@ public class systemServlet extends HttpServlet {
         int length;
         if(article.length()>2000)
             length=2000;
-        else
-            length=article.length();
-        for(int i=0;i<length;i++){
+        else{
+length=article.length();
+}
+                   for(int i=0;i<length;i++){
             if(article.charAt(i)=='<'){
                 while(article.charAt(i)!='>'){
                     i++;
@@ -219,8 +244,11 @@ public class systemServlet extends HttpServlet {
             }
             articleSucceed=articleSucceed+ tempArticle.charAt(i);
         }
-        if(articleSucceed.length()>120)
-            articleSucceed=articleSucceed.substring(0,120);
-        return  articleSucceed;
+        if(articleSucceed.length()>120){
+articleSucceed=articleSucceed.substring(0,120);
+
+}
+                   return  articleSucceed;
     }
 }
+

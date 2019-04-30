@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by mafx on 2018/6/5.
+ * Created by mafx on 2019/4/20.
  */
 public class newsDao {
     private final static String DRIVER = "com.mysql.jdbc.Driver";
@@ -31,7 +31,6 @@ public class newsDao {
         Class.forName(DRIVER);
         conn= DriverManager.getConnection(URL,USERNAME,PASSWORD);
         list=run.query(conn,sql,new BeanListHandler<Blog>(Blog.class));
-
     }catch (Exception ex){
         ex.printStackTrace();
     }finally {
@@ -40,18 +39,18 @@ public class newsDao {
         }catch (Exception ex){
             ex.printStackTrace();
         }
-    }
+      }
         return list;
     }
     public List<Blog> findAllPageDao(int startIndex, int pageSize,int blogLevel,String operClass){
         String sql;
         if(operClass.equals("getAllBlog")){
             if(blogLevel==0) {
-                sql = "select * from articles limit ?,?";//所有博客
+                sql = "select * from articles limit ?,?";//"所有博客"
             }else if(blogLevel==1){
-                sql = "select * from articles where readNum>100 limit ?,?";//精品博客
+                sql = "select * from articles where readNum>100 limit ?,?";//"精品博客"
             }else{
-                sql = "select * from articles where readNum>50 and  readNum<100 limit ?,?";//热门博客
+                sql = "select * from articles where readNum>50 and  readNum<100 limit ?,?";//"热门博客"
             }
         }else{
             sql = "select * from articles where userId="+blogLevel+" limit ?,?";
@@ -62,7 +61,6 @@ public class newsDao {
             Class.forName(DRIVER);
             conn= DriverManager.getConnection(URL,USERNAME,PASSWORD);
             list=run.query(conn,sql,new BeanListHandler<Blog>(Blog.class),param);
-
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {
@@ -82,7 +80,6 @@ public class newsDao {
             Class.forName(DRIVER);
             conn= DriverManager.getConnection(URL,USERNAME,PASSWORD);
             list=run.query(conn,sql,new BeanListHandler<Blog>(Blog.class),param);
-
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {
@@ -93,7 +90,6 @@ public class newsDao {
             }
         }
         return list;
-
     }
     public User getUserByUsnAndPwd(String username, String pwd){
         String sql="SELECT * FROM users WHERE username=? AND pwd=?";
@@ -153,7 +149,6 @@ public class newsDao {
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             blog=run.query(conn, sql, new BeanHandler<Blog>(Blog.class));
-
         }catch(Exception ex){
            ex.printStackTrace();
         }finally {
@@ -192,7 +187,6 @@ public class newsDao {
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             rows=run.update(conn,sql);
-
         }catch(Exception ex){
             ex.printStackTrace();
         }finally {
@@ -211,7 +205,6 @@ public class newsDao {
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             run.update(conn,sql,prama);
-
         }catch(Exception ex) {
             ex.printStackTrace();
         }
