@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by mafx on 2018/6/5.
  */
-public class findAllWithPageService {
+public class FindAllWithPageService {
     public Page<Blog> findAllNews(int pageNum, int pageSize,int blogLevel,String operClass) {
         newsDao newsDao=new newsDao();
         List<Blog> news = newsDao.findAllNews();
@@ -21,7 +21,7 @@ public class findAllWithPageService {
         return pg;
     }
     public Page<Blog> findAllNews(int pageNum, int pageSize,int blogLevel,String operClass,String litter) {
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
         List<Blog> news = newsDao.findAllNews();
         int totalRecord = news.size();
         Page pg = new Page(pageNum,pageSize,totalRecord);
@@ -30,37 +30,37 @@ public class findAllWithPageService {
         return pg;
     }
     public User getUserByUsnAndPwd(String username, String pwd){
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
        return newsDao.getUserByUsnAndPwd(username,pwd);
     }
     public int addBlogService(Blog blog){
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
         int id=newsDao.addBlogDao(blog);
         return id;
     }
     public Blog getBlogDetailService(int id){
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
         return newsDao.getBlogByIdDao(id);
     }
     public Blog getBlogIdService(int id){
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
         return newsDao.getBlogByIdDao(id);
     }
     public int updateBlogService(Blog blog){
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
         return newsDao.updateBlogDao(blog);
     }
     public int deleteBlogService(int id){
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
         return newsDao.deleteBlogDao(id);
 
     }
     public void addCommentService(comment comm){
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
         newsDao.addComment(comm);
     }
     public List<comment> getCommentById(int id){
-        newsDao newsDao=new newsDao();
+        NewsDao newsDao=new NewsDao();
         return newsDao.getCommentByIdDao(id);
     }
 }
