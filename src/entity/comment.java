@@ -1,13 +1,11 @@
 package entity;
 
-/**
- * Created by mafx on 2018/6/28.
- */
+
 public class comment {
-    private int id;
-    private String comment;
-    private String username;
-    private int  articleId;
+    private int id;//标识
+    private String comment;//评论
+    private String username;//用户名
+    private int  articleId;//文章id
     public int getId() {
         return id;
     }
